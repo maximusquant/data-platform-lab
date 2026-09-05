@@ -134,6 +134,9 @@ dbt docs serve
 Открывает интерактивный граф зависимостей моделей и описания полей на `http://localhost:8080`.
 
 ---
+![fact_orders](fact_orders.png)
+![Lineage Graph](docs/Lineage_Graph.png)
+
 
 ## 📈 BI-дашборды (Superset)
 
@@ -143,6 +146,9 @@ dbt docs serve
 - Динамику выручки по месяцам;
 - Топ-10 категорий товаров по выручке.
 
+![Executive Overview](docs/BI_1_executive_overview.png)
+![Cohort Analysis](docs/BI_2_cohort_analysis.png)
+![Operations](docs/BI_3_operations.png)
 ---
 
 ## 📁 Структура проекта
@@ -185,9 +191,3 @@ dbt build
 ```
 
 ---
-
-## 🗺 Дальнейшие шаги
-
-- [ ] Оркестрация обновления витрин через Apache Airflow (DAG, запускающий `dbt run` по расписанию)
-- [ ] Расширение когортного анализа
-- [ ] CI-пайплайн для автоматического прогона `dbt test` при пуше
