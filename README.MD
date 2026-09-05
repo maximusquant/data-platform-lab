@@ -1,4 +1,4 @@
-# 🚀 Data Platform Lab - e-commerce DWH (Postgres → ClickHouse → dbt → Superset)
+# Data Platform Lab - e-commerce DWH (Postgres → ClickHouse → dbt → Superset)
 
 Учебно-практический проект аналитического хранилища данных (DWH), построенного на реальном e-commerce датасете. Полный цикл: от сырых CSV-файлов до готовых BI-дашбордов.
 
