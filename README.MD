@@ -135,6 +135,7 @@ dbt docs serve
 
 ---
 ![Fact orders](docs/fact_orders.png)
+![LG Fact orders](docs/LG_fact_orders.png)
 ![Lineage Graph](docs/Lineage_Graph.png)
 
 
