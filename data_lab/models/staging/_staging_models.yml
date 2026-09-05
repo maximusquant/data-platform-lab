@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Очищенные данные по заказам e-commerce"
+    columns:
+      - name: order_id
+        description: "Первичный ключ заказа"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Временный ID клиента"
+        tests:
+          - not_null
+      - name: order_status
+        description: "Текущий статус обработки и доставки заказа"
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'canceled', 'invoiced', 'processing', 'unavailable', 'created', 'approved']
+
+  - name: stg_customer
+    description: "Данные по клиентам и их региональной привязке"
+    columns:
+      - name: customer_id
+        description: "Первичный ключ связи заказа и клиента"
+        tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        description: "Стабильный сквозной ID клиента, объединяющий все его повторные покупки"
+        tests:
+          - not_null
+
+  - name: stg_payments
+    description: "Транзакции и способы оплаты заказов"
+    columns:
+      - name: order_id
+        description: "Внешний ключ заказа, к которому относится транзакция"
+        tests:
+          - not_null
+      - name: payment_type
+        description: "Метод оплаты (credit_card, boleto, voucher, debit_card)"
+      - name: payment_value
+        description: "Сумма платежа в бразильских реалах (BRL)"

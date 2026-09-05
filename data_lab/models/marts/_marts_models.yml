@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: marts_overview_monthly
+    description: "Помесячная витрина ключевых бизнес-метрик (выручка, заказы, AOV, средний рейтинг и MoM рост)"
+    columns:
+      - name: sales_month
+        description: "Первый день месяца совершения заказа"
+        tests:
+          - unique
+          - not_null
+      - name: total_orders
+        description: "Количество уникальных доставленных заказов"
+      - name: total_revenue
+        description: "Общая выручка в бразильских реалах (BRL)"
+      - name: avg_order_value
+        description: "Средний чек (AOV)"
+      - name: avg_review_score
+        description: "Средняя оценка заказа по шкале 1-5"
+      - name: revenue_mom_growth_pct
+        description: "Процентный рост выручки Month-over-Month"
+
+  - name: marts_customer_cohorts
+    description: "Витрина для когортного анализа Retention и LTV по месяцам первой покупки"
+    columns:
+      - name: first_purchase_month
+        description: "Месяц первой покупки клиента (когорта)"
+        tests:
+          - not_null
+      - name: cohort_size
+        description: "Количество клиентов в когорте"
+      - name: month_number
+        description: "Порядковый номер месяца жизни когорты (0, 1, 2...)"
+      - name: cohort_ltv
+        description: "Накопленный LTV на клиента"
+
+  - name: marts_delivery_performance
+    description: "Логистическая витрина доставки, средних сроков и доли задержек"
+    columns:
+      - name: customer_state
+        description: "Двухбуквенный код штата Бразилии"
+        tests:
+          - unique
+          - not_null
+      - name: avg_actual_delivery_days
+        description: "Среднее время доставки заказа в днях"
+      - name: late_delivery_pct
+        description: "Процент заказов, доставленных позже обещанного срока"
+
+  - name: marts_product_performance
+    description: "Витрина эффективности категорий товаров (выручка, проданные единицы, доставка и рейтинг)"
+    columns:
+      - name: category_name_en
+        description: "Наименование категории товара на английском языке"
+        tests:
+          - not_null
+      - name: total_orders_count
+        description: "Количество уникальных заказов в категории"
+      - name: total_items_sold
+        description: "Общее количество проданных единиц товара"
+      - name: total_gross_revenue
+        description: "Суммарная выручка по категории товара"
+      - name: total_freight_value
+        description: "Суммарная стоимость доставки по категории"
+      - name: avg_item_price
+        description: "Средняя стоимость товара в категории"
+      - name: avg_category_review_score
+        description: "Средняя оценка товаров категории клиентами"

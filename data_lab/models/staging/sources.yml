@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Сырые данные Olist, загруженные из CSV без изменений"
+    tables:
+      - name: raw_customers
+        description: "Сырые данные о покупателях и гео-локациях заказов"
+      - name: raw_geolocation
+        description: "Географические координаты по почтовым индексам Бразилии"
+      - name: raw_order_items
+        description: "Детализация товаров в составе каждого заказа"
+      - name: raw_payments
+        description: "Данные о платежах, способах оплаты и рассрочках"
+      - name: raw_reviews
+        description: "Отзывы и оценки клиентов по заказам"
+      - name: raw_orders
+        description: "Сведения о заказах, статусах и датах логистических этапов"
+      - name: raw_products
+        description: "Характеристики товаров и категории"
+      - name: raw_sellers
+        description: "Информация о продавцах на маркетплейсе"
+      - name: raw_category_translation
+        description: "Справочник перевода категорий товаров с португальского на английский"

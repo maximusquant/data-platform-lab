@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Измерение уникальных клиентов"
+    columns:
+      - name: customer_unique_id
+        description: "Уникальный сквозной идентификатор пользователя"
+        tests:
+          - unique
+          - not_null
+      - name: customer_state
+        description: "Штат проживания клиента"
+
+  - name: fact_orders
+    description: "Таблица фактов по заказам"
+    columns:
+      - name: order_id
+        description: "Уникальный идентификатор заказа"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Внешний ключ для связи со staging-клиентами"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customer')
+              field: customer_id
+      - name: order_status
+        description: "Статус заказа на стороне DWH"
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'canceled', 'invoiced', 'processing', 'unavailable', 'created', 'approved']
+
+  - name: fact_order_items
+    description: "Таблица фактов по позициям в составе заказов"
+    columns:
+      - name: order_id
+        description: "Идентификатор заказа"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: order_id
+      - name: product_id
+        description: "Идентификатор проданного товара"
+        tests:
+          - relationships:
+              to: ref('dim_products')
+              field: product_id
+      - name: price
+        description: "Стоимость единицы товара"
+      - name: freight_value
+        description: "Стоимость доставки позиции"

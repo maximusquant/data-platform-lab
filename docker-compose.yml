@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: data_lab_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_pass
+      POSTGRES_DB: raw_data
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: data_lab_clickhouse
+    environment:
+      CLICKHOUSE_USER: clickhouse
+      CLICKHOUSE_PASSWORD: clickhouse_pass
+      CLICKHOUSE_DB: default
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+    restart: unless-stopped
+
+  superset:
+    build:
+      context: ./superset
+      dockerfile: Dockerfile
+    container_name: data_lab_superset
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: 'your_secret_key_here_change_me'
+    command: >
+      bash -c "
+      superset db upgrade &&
+      superset init &&
+      superset run -h 0.0.0.0 -p 8088 --with-threads
+      "
+    volumes:
+      - superset_data:/app/superset_home
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  clickhouse_data:
+  superset_data:

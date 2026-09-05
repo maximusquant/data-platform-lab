@@ -1,0 +1,25 @@
+# Данные
+data/
+!data/.gitkeep
+
+# dbt
+data_lab/target/
+data_lab/dbt_packages/
+data_lab/dbt_internal_packages/
+data_lab/logs/
+data_lab/.user.yml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+logs/
+*.log

@@ -1,0 +1,23 @@
+# Данные
+data/
+!data/.gitkeep
+
+# dbt
+target/
+dbt_packages/
+dbt_internal_packages/
+logs/
+.user.yml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
