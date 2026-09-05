@@ -2,15 +2,18 @@
 
 Учебно-практический проект аналитического хранилища данных (DWH), построенного на реальном e-commerce датасете. Полный цикл: от сырых CSV-файлов до готовых BI-дашбордов.
 
-Цель проекта — воспроизвести типичный стек команды аналитики/DWH в российских финтех- и e-commerce компаниях (Postgres/ClickHouse + dbt + Airflow + Superset).
+Цель проекта — воспроизвести типичный стек команды аналитики/DWH в российских финтех- и e-commerce компаниях (Postgres/ClickHouse + dbt + Superset).
 
 ---
 
 ## Источник данных
 
 Использован открытый датасет **Olist** (бразильская e-commerce площадка, ~99 тыс. заказов, 2016–2018 гг.), включающий заказы, позиции заказов, клиентов, товары, продавцов, платежи и отзывы.
-
 Датасет скачан в виде набора CSV-файлов и служит имитацией выгрузки из боевой (OLTP) системы интернет-магазина.
+Скачайте датасет Olist с Kaggle и поместите CSV-файлы в папку data/
+https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+python ingestion/ingested_olist.py    # CSV → Postgres (landing)
+python ingestion/postgres_to_clickhouse.py  # Postgres → ClickHouse (raw)
 
 ---
 
