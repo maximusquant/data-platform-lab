@@ -134,7 +134,7 @@ dbt docs serve
 Открывает интерактивный граф зависимостей моделей и описания полей на `http://localhost:8080`.
 
 ---
-![fact_orders](fact_orders.png)
+![Fact orders](fact_orders.png)
 ![Lineage Graph](docs/Lineage_Graph.png)
 
 
